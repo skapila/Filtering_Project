@@ -47,6 +47,23 @@ tracker.F = np.array([[1, dt, 0,  0],
 
 
 """Design the Process Noise Matrix"""
-q = Q_discrete_white_noise(dim=2, dt=dt, var=0.001)
+Q_std = 0.04
+q = Q_discrete_white_noise(dim=2, dt=dt, var=Q_std**2)
 tracker.Q = block_diag(q, q)
 print(tracker.Q)
+
+
+"""Design the Measurement Function"""
+tracker.H = np.array([[1, 0, 0,        0],
+                      [0,        0, 1, 0]])
+
+
+"""Design the Measurement Noise Matrix"""
+R_std = 0.35
+tracker.R = np.eye(2) * R_std**2
+
+
+
+"""Initial Conditions"""
+tracker.x = np.array([[0, 0, 0, 0]]).T
+tracker.P = np.eye(4) * 500.
