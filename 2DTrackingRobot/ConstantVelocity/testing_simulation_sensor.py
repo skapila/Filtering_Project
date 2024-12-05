@@ -1,4 +1,4 @@
-from SensorSimulation import PosSensor,PosSensor_1
+from sensor_simulation import PosSensor,PosSensor1
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -19,7 +19,7 @@ import numpy as np
 
 """  Testing the Sensor1  """
 pos, vel = (4, 3), (2, 1)
-sensor = PosSensor_1(pos, vel, noise_std=1, time_step=0.5)
+sensor = PosSensor1(pos, vel, noise_std=1, time_step=0.5)
 ps = np.array([sensor.read() for _ in range(50)])
 plt.scatter(ps[:,0], ps[:,1], marker='o', facecolor='none', edgecolor='black', s=50)
 

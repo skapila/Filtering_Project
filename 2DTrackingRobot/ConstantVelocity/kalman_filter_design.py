@@ -3,17 +3,15 @@ from filterpy.common import Q_discrete_white_noise
 import numpy as np
 from scipy.linalg import block_diag
 
-
-class tracker_2D_constant_velocity(): 
-    def __init__(self,Q_std=0.0,R_std=0.0):
+class Tracker2DConstantVelocity(): 
+    def __init__(self,Q_std=0.0,R_std=0.0,dt=1.):
         self.Q_std = Q_std
         self.R_std = R_std
-        self.kf_2D_CV= self.tracker_2D(Q_std,R_std) 
+        self.kf_2D_CV= self.tracker_2D(Q_std,R_std,dt) 
         
-    def tracker_2D(self,Q_std,R_std):
+    def tracker_2D(self,Q_std,R_std,dt):
         """Design state transition matrix"""
         tracker = KalmanFilter(dim_x=4, dim_z=2)
-        dt = 1.   # time step 1 second
         tracker.F = np.array([[1, dt, 0,  0],
                             [0,  1, 0,  0],
                             [0,  0, 1, dt],
@@ -35,5 +33,4 @@ class tracker_2D_constant_velocity():
         """Initial Conditions"""
         tracker.x = np.array([[0, 0, 0, 0]]).T
         tracker.P = np.eye(4) * 500.
-
         return tracker

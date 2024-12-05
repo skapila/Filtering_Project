@@ -15,7 +15,7 @@ class PosSensor(object):
     
 
 
-class PosSensor_1(object):
+class PosSensor1(object):
     def __init__(self, pos=(0, 0), vel=(0, 0), noise_std=1., time_step=1.):
         self.vel = vel
         self.noise_std = noise_std
