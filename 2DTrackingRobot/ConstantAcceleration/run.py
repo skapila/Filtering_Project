@@ -6,6 +6,7 @@ from kalman_filter_design import Tracker2DConstantAcceleration as Tracker2D
 from sensor_simulation import PosSensor,PosSensor1
 from ploting import *
 
+"""  The following example  does not estimate output data to generate next input command"""
 # Setting Q and R 
 Q_std=0.01
 R_std=2
